@@ -170,6 +170,14 @@ return [
 }
 document.getElementById("studentForm").addEventListener("submit",function(event){
 event.preventDefault();
+  const formData = new FormData(this);
+const data = Object.fromEntries(formData.entries());
+
+fetch("https://script.google.com/macros/s/AKfycby3iI7CZnTQnV4lYHmudoFDxWYnwHYN6lHFyHH9x2G06WF07FgwUv1bbiY7fTOtsRGmiQ/exec", {
+  method: "POST",
+  mode: "no-cors",
+  body: JSON.stringify(data)
+});
 const student=document.getElementById("studentName");
 if(!student.value.trim()){showPage(0);document.getElementById("studentError").style.display="block";student.focus();return}
 document.getElementById("resultText").textContent=buildResult();
