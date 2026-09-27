@@ -129,9 +129,9 @@ button:active{transform:scale(.98)}
 <div class="result-title">📋 نتیجه فرم آماده ارسال است</div>
 <div class="resultbox" id="resultText"></div>
 <button type="button" class="copy-btn" onclick="copyResult()">📋 کپی فقط نتیجه فرم</button>
-<button type="button" class="eitaa-btn" onclick="sendToEitaa()">📱 کپی نتیجه و ورود به ایتا</button>
-<div class="eitaa-id">آیدی ایتا معلم:<br>@Teacher_Ashoori</div>
-<div class="success-message" id="successMessage">✅ نتیجه فرم با موفقیت کپی شد.<br><br>حالا در ایتا وارد گفت‌وگوی خانم آشوری شوید و در قسمت نوشتن پیام، گزینه «چسباندن / Paste» را بزنید.</div>
+<button type="button" class="shad-btn" onclick="sendToShad()">📱 کپی نتیجه و ورود به شاد</button>
+<div class="shad-id">آیدی شاد معلم:<br>@Fashoorii</div>
+<div class="success-message" id="successMessage">✅ نتیجه فرم با موفقیت کپی شد.<br><br>حالا وارد گفت‌وگوی خانم آشوری در شاد شوید و گزینه «چسباندن / Paste» را بزنید.</div>
 <div class="hint"><strong>توجه:</strong><br>فقط اطلاعات فرم کپی می‌شود.<br>هیچ کد HTML، CSS یا JavaScript کپی نخواهد شد.</div>
 </div></div>
 </section>
@@ -191,7 +191,7 @@ try{await navigator.clipboard.writeText(text);showCopyMessage();return true}
 catch(error){try{const t=document.createElement("textarea");t.value=text;t.style.position="fixed";t.style.left="-9999px";document.body.appendChild(t);t.focus();t.select();document.execCommand("copy");t.remove();showCopyMessage();return true}catch(e){alert("لطفاً متن نتیجه را به صورت دستی انتخاب و کپی کنید.");return false}}
 }
 function showCopyMessage(){document.getElementById("successMessage").style.display="block"}
-async function sendToEitaa(){
+async function sendToShad(){
 const copied=await copyResult();
 if(copied)setTimeout(()=>{window.location.href="https://shad.ir/Fashoorii"},500);
 }
