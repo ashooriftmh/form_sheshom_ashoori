@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>فرم مشخصات دانش‌آموزان | کلاس ششم خانم آشوری</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;min-height:100%}
+body{
+font-family:Tahoma,"Segoe UI",Arial,sans-serif;color:#493b57;min-height:100vh;
+background:radial-gradient(circle at 10% 10%,rgba(255,255,255,.9) 0 7%,transparent 8%),
+radial-gradient(circle at 90% 20%,rgba(255,255,255,.7) 0 6%,transparent 7%),
+linear-gradient(135deg,#fff0f7,#eef7ff 45%,#f5f0ff);overflow-x:hidden
+}
+body:before,body:after{content:"🌸";position:fixed;font-size:90px;opacity:.12;z-index:-1;animation:floatFlower 7s ease-in-out infinite}
+body:before{top:3%;right:2%}body:after{bottom:3%;left:2%;animation-delay:1.5s}
+@keyframes floatFlower{50%{transform:translateY(-15px) rotate(8deg)}}
+.app{width:min(920px,94%);margin:0 auto;padding:24px 0 40px}
+header{text-align:center;margin-bottom:18px}
+.title{display:inline-block;padding:13px 25px;border-radius:22px;background:linear-gradient(135deg,#fff,#fff5fb);box-shadow:0 10px 30px rgba(116,77,128,.14);color:#7c4c82;font-size:clamp(20px,4vw,31px);font-weight:800}
+.welcome{margin:14px auto 0;padding:15px 18px;max-width:780px;background:rgba(255,255,255,.88);border:1px solid #f1d9ec;border-radius:19px;line-height:2;font-size:clamp(14px,2.5vw,17px);box-shadow:0 8px 24px rgba(100,70,110,.08)}
+.progress{display:flex;justify-content:center;align-items:center;gap:12px;margin:20px 0 12px}
+.dot{width:12px;height:12px;border-radius:50%;background:#dfd2e3;transition:.25s}
+.dot.active{background:#a36daa;transform:scale(1.35);box-shadow:0 0 0 5px rgba(163,109,170,.12)}
+.page{display:none;animation:fadePage .35s ease}.page.active{display:block}
+@keyframes fadePage{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.card{background:rgba(255,255,255,.93);border:1px solid rgba(225,204,230,.9);border-radius:24px;padding:20px;margin:15px 0;box-shadow:0 12px 32px rgba(95,66,108,.12)}
+.card h2{margin:0 0 16px;font-size:20px;color:#76507e}
+.student-card{border-top:5px solid #c985bd}.father-card{border-top:5px solid #80b8d8}.mother-card{border-top:5px solid #e9a4bd}.religion-card{border-top:5px solid #b79bd1}.shad-card{border-top:5px solid #76b9d5}.eitaa-card{border-top:5px solid #c59bd9}.family-card{border-top:5px solid #e3a46e}.living-card{border-top:5px solid #8ebf9d}.special-card{border-top:5px solid #e9b56c}.final-card{border-top:5px solid #9d69ad}
+label{display:block;margin:12px 0 7px;font-weight:700;font-size:14px}
+input,textarea{width:100%;border:2px solid #eadfeb;border-radius:14px;padding:13px 14px;background:#fff;font:inherit;color:#45364f;outline:none;transition:.2s}
+input:focus,textarea:focus{border-color:#a978ad;box-shadow:0 0 0 4px rgba(169,120,173,.12)}
+textarea{min-height:170px;resize:vertical;line-height:1.9}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.options{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:10px}
+.option{position:relative}.option input{position:absolute;opacity:0;pointer-events:none}
+.option label{display:flex;justify-content:center;align-items:center;min-height:52px;margin:0;padding:10px;text-align:center;border:2px solid #eadfeb;border-radius:15px;background:#fff;cursor:pointer;transition:.2s;font-weight:700}
+.option input:checked+label{border-color:#a36daa;background:linear-gradient(135deg,#fff2fa,#f4edff);color:#75477d;box-shadow:0 4px 15px rgba(163,109,170,.12)}
+.nav{display:flex;gap:12px;margin-top:18px}
+button{flex:1;border:0;border-radius:16px;padding:14px 18px;font:inherit;font-weight:800;cursor:pointer;transition:.2s}
+button:active{transform:scale(.98)}
+.next{background:linear-gradient(135deg,#8d5c9d,#b87eb1);color:#fff}.back{background:#f1eaf4;color:#684a70}.submit{background:linear-gradient(135deg,#d27c9e,#9d69ad);color:#fff}
+.error{display:none;color:#b23e5b;font-size:13px;margin-top:7px}
+.thanks{text-align:center;line-height:2;background:linear-gradient(135deg,#fff8fb,#fff)}
+.result{display:none;margin-top:15px}.result-title{text-align:center;color:#76507e;font-size:21px;font-weight:bold;margin-bottom:15px}
+.resultbox{white-space:pre-wrap;background:#faf7fb;border:1px dashed #bd9bc4;border-radius:16px;padding:15px;line-height:2;font-size:14px;max-height:350px;overflow:auto;text-align:right}
+.copy-btn,.eitaa-btn{width:100%;margin-top:12px;color:#fff}.copy-btn{background:linear-gradient(135deg,#7a5b83,#a36daa)}.eitaa-btn{background:linear-gradient(135deg,#39a9dc,#2389bd)}
+.eitaa-id{margin-top:14px;padding:12px;background:#eef8ff;border-radius:14px;color:#28769d;font-weight:bold;text-align:center}
+.hint{text-align:center;font-size:13px;color:#76677a;margin-top:13px;line-height:1.9}
+.success-message{display:none;margin-top:12px;padding:12px;border-radius:14px;background:#eefaf2;color:#32734a;font-size:14px;line-height:1.8;text-align:center}
+@media(max-width:650px){.app{width:92%;padding-top:15px}.card{padding:16px;border-radius:19px}.grid{grid-template-columns:1fr}.nav{flex-direction:column}.title{padding:11px 17px}.welcome{padding:12px}.options{grid-template-columns:1fr 1fr}}
+@media(max-width:390px){.options{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+<div class="title">🌺 کلاس ششم خانم آشوری 🌺</div>
+<div class="welcome">والدین گرامی، لطفاً اطلاعات زیر را با دقت تکمیل فرمایید.<br><strong>با سپاس از همراهی شما 🌸</strong></div>
+</header>
+
+<div class="progress"><span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+
+<form id="studentForm" novalidate>
+<section class="page active" data-page="0">
+<div class="card student-card"><h2>🌷 مشخصات دانش‌آموز</h2>
+<label for="studentName">نام دانش‌آموز *</label>
+<input id="studentName" name="studentName" type="text" placeholder="نام و نام خانوادگی دانش‌آموز">
+<div class="error" id="studentError">لطفاً نام دانش‌آموز را وارد کنید.</div></div>
+
+<div class="card father-card"><h2>👨🏻 مشخصات پدر</h2><div class="grid">
+<div><label for="fatherName">نام پدر</label><input id="fatherName" name="fatherName" type="text"></div>
+<div><label for="fatherJob">شغل پدر</label><input id="fatherJob" name="fatherJob" type="text"></div>
+<div><label for="fatherEdu">تحصیلات پدر</label><input id="fatherEdu" name="fatherEdu" type="text"></div>
+</div></div>
+
+<div class="card mother-card"><h2>👩🏻 مشخصات مادر</h2><div class="grid">
+<div><label for="motherName">نام مادر</label><input id="motherName" name="motherName" type="text"></div>
+<div><label for="motherJob">شغل مادر</label><input id="motherJob" name="motherJob" type="text"></div>
+<div><label for="motherEdu">تحصیلات مادر</label><input id="motherEdu" name="motherEdu" type="text"></div>
+<div><label for="motherPhone">شماره همراه مادر</label><input id="motherPhone" name="motherPhone" type="tel" inputmode="tel" placeholder="مثلاً 0912..."></div>
+</div></div>
+
+<div class="card religion-card"><h2>🕌 دین و مذهب</h2>
+<label>دین</label><div class="options">
+<div class="option"><input type="radio" name="religion" id="religionIslam" value="اسلام"><label for="religionIslam">اسلام</label></div>
+<div class="option"><input type="radio" name="religion" id="religionOther" value="سایر ادیان"><label for="religionOther">سایر ادیان</label></div>
+</div>
+<label>مذهب</label><div class="options">
+<div class="option"><input type="radio" name="sect" id="sectShia" value="شیعه"><label for="sectShia">شیعه</label></div>
+<div class="option"><input type="radio" name="sect" id="sectSunni" value="سنی"><label for="sectSunni">سنی</label></div>
+</div></div>
+<div class="nav"><button type="button" class="next" onclick="nextPage()">صفحه بعد ⬅️</button></div>
+</section>
+
+<section class="page" data-page="1">
+<div class="card shad-card"><h2>💬 شماره شاد</h2><label for="shad">شماره یا شناسه شاد</label><input id="shad" name="shad" type="text" placeholder="شماره یا شناسه شاد"></div>
+<div class="card eitaa-card"><h2>📱 شماره ایتا</h2><label for="eitaa">شماره یا شناسه ایتا</label><input id="eitaa" name="eitaa" type="text" placeholder="شماره یا شناسه ایتا"></div>
+<div class="nav"><button type="button" class="back" onclick="prevPage()">➡️ صفحه قبل</button><button type="button" class="next" onclick="nextPage()">صفحه بعد ⬅️</button></div>
+</section>
+
+<section class="page" data-page="2">
+<div class="card family-card"><h2>👨‍👩‍👧 وضعیت والدین</h2>
+<label>پدر در قید حیات است</label><div class="options">
+<div class="option"><input type="radio" name="fatherAlive" id="fatherAliveYes" value="بلی"><label for="fatherAliveYes">بلی</label></div>
+<div class="option"><input type="radio" name="fatherAlive" id="fatherAliveNo" value="خیر"><label for="fatherAliveNo">خیر</label></div>
+</div>
+<label>مادر در قید حیات است</label><div class="options">
+<div class="option"><input type="radio" name="motherAlive" id="motherAliveYes" value="بلی"><label for="motherAliveYes">بلی</label></div>
+<div class="option"><input type="radio" name="motherAlive" id="motherAliveNo" value="خیر"><label for="motherAliveNo">خیر</label></div>
+</div></div>
+<div class="card living-card"><h2>🏡 دانش‌آموز با چه کسی زندگی می‌کند؟</h2><div class="options">
+<div class="option"><input type="radio" name="livingWith" id="livingFather" value="با پدر"><label for="livingFather">با پدر</label></div>
+<div class="option"><input type="radio" name="livingWith" id="livingMother" value="با مادر"><label for="livingMother">با مادر</label></div>
+<div class="option"><input type="radio" name="livingWith" id="livingBoth" value="با هردو"><label for="livingBoth">با هردو</label></div>
+</div></div>
+<div class="nav"><button type="button" class="back" onclick="prevPage()">➡️ صفحه قبل</button><button type="button" class="next" onclick="nextPage()">صفحه بعد ⬅️</button></div>
+</section>
+
+<section class="page" data-page="3">
+<div class="card special-card"><h2>🌼 موارد خاص</h2>
+<label for="special">چنانچه دانش‌آموز مواردی خاص شامل بیماری، حساسیت یا موردی که معلم نیاز است بداند را اینجا تایپ کنید.</label>
+<textarea id="special" name="special" placeholder="توضیحات خود را اینجا وارد کنید..."></textarea></div>
+<div class="nav"><button type="button" class="back" onclick="prevPage()">➡️ صفحه قبل</button><button type="submit" class="submit">✅ تأیید نهایی و ارسال</button></div>
+<div class="card thanks"><strong>سپاس از همراهی شما عزیزان 🌸</strong><br>با احترام خانم آشوری 🌸</div>
+
+<div class="result" id="result"><div class="card final-card">
+<div class="result-title">📋 نتیجه فرم آماده ارسال است</div>
+<div class="resultbox" id="resultText"></div>
+<button type="button" class="copy-btn" onclick="copyResult()">📋 کپی فقط نتیجه فرم</button>
+<button type="button" class="eitaa-btn" onclick="sendToEitaa()">📱 کپی نتیجه و ورود به ایتا</button>
+<div class="eitaa-id">آیدی ایتا معلم:<br>@Teacher_Ashoori</div>
+<div class="success-message" id="successMessage">✅ نتیجه فرم با موفقیت کپی شد.<br><br>حالا در ایتا وارد گفت‌وگوی خانم آشوری شوید و در قسمت نوشتن پیام، گزینه «چسباندن / Paste» را بزنید.</div>
+<div class="hint"><strong>توجه:</strong><br>فقط اطلاعات فرم کپی می‌شود.<br>هیچ کد HTML، CSS یا JavaScript کپی نخواهد شد.</div>
+</div></div>
+</section>
+</form>
+</div>
+
+<script>
+let currentPage=0;
+const pages=[...document.querySelectorAll(".page")],dots=[...document.querySelectorAll(".dot")];
+function showPage(index){currentPage=index;pages.forEach((p,i)=>p.classList.toggle("active",i===index));dots.forEach((d,i)=>d.classList.toggle("active",i===index));window.scrollTo({top:0,behavior:"smooth"});}
+function nextPage(){
+if(currentPage===0){
+const input=document.getElementById("studentName"),error=document.getElementById("studentError");
+if(!input.value.trim()){error.style.display="block";input.focus();return}
+error.style.display="none";
+}
+if(currentPage<pages.length-1)showPage(currentPage+1);
+}
+function prevPage(){if(currentPage>0)showPage(currentPage-1)}
+function value(id){const e=document.getElementById(id);return e?e.value.trim():""}
+function radioValue(name){const s=document.querySelector('input[name="'+name+'"]:checked');return s?s.value:"انتخاب نشده"}
+function line(label,id){return label+": "+(value(id)||"وارد نشده")}
+function buildResult(){
+return [
+"🌺 مشخصات دانش‌آموز | کلاس ششم خانم آشوری 🌺","",
+"👧 مشخصات دانش‌آموز",line("نام دانش‌آموز","studentName"),"",
+"👨🏻 مشخصات پدر",line("نام پدر","fatherName"),line("شغل پدر","fatherJob"),line("تحصیلات پدر","fatherEdu"),"",
+"👩🏻 مشخصات مادر",line("نام مادر","motherName"),line("شغل مادر","motherJob"),line("تحصیلات مادر","motherEdu"),line("شماره همراه مادر","motherPhone"),"",
+"🕌 دین و مذهب","دین: "+radioValue("religion"),"مذهب: "+radioValue("sect"),"",
+"💬 ارتباط مجازی",line("شماره شاد","shad"),line("شماره ایتا","eitaa"),"",
+"👨‍👩‍👧 وضعیت والدین","پدر در قید حیات است: "+radioValue("fatherAlive"),"مادر در قید حیات است: "+radioValue("motherAlive"),"",
+"🏡 محل زندگی دانش‌آموز","دانش‌آموز با: "+radioValue("livingWith"),"",
+"🌼 موارد خاص",value("special")||"موردی اعلام نشده","",
+"🌸 با احترام خانم آشوری"
+].join("\n");
+}
+document.getElementById("studentForm").addEventListener("submit",function(event){
+event.preventDefault();
+const student=document.getElementById("studentName");
+if(!student.value.trim()){showPage(0);document.getElementById("studentError").style.display="block";student.focus();return}
+document.getElementById("resultText").textContent=buildResult();
+document.getElementById("result").style.display="block";
+document.getElementById("successMessage").style.display="none";
+setTimeout(()=>document.getElementById("result").scrollIntoView({behavior:"smooth",block:"start"}),100);
+});
+async function copyResult(){
+const text=document.getElementById("resultText").textContent;if(!text)return false;
+try{await navigator.clipboard.writeText(text);showCopyMessage();return true}
+catch(error){try{const t=document.createElement("textarea");t.value=text;t.style.position="fixed";t.style.left="-9999px";document.body.appendChild(t);t.focus();t.select();document.execCommand("copy");t.remove();showCopyMessage();return true}catch(e){alert("لطفاً متن نتیجه را به صورت دستی انتخاب و کپی کنید.");return false}}
+}
+function showCopyMessage(){document.getElementById("successMessage").style.display="block"}
+async function sendToEitaa(){
+const copied=await copyResult();
+if(copied)setTimeout(()=>{window.location.href="https://eitaa.com/Teacher_Ashoori"},500);
+}
+</script>
+</body>
+</html>
